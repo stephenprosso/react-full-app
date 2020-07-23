@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table, Button } from "reactstrap";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faThumbsUp, faThumbsDown, faImage, faMoneyCheck, faSearchDollar} from '@fortawesome/free-solid-svg-icons'
+import {} from '@fortawesome/fontawesome-svg-core'
 
 class App extends Component {
   state = {
@@ -47,11 +50,11 @@ remove(id){
         <td>{invoice.Amount}</td>
         <td>{invoice.Invoice}</td>
         <td>{invoice.date}</td>
-        <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(invoice.id)}>Ok</Button></td>
-        <td><Button className="btn btn-lg btn-danger" onClick={() => this.remove(invoice.id)}>N-ok</Button></td>
-        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}>50%</Button></td>
-        <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(invoice.id)}>??</Button></td>
-        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}>Image</Button></td>
+        <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faThumbsUp} /> Ok </Button></td>
+        <td><Button className="btn btn-lg btn-danger" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faThumbsDown} /> N-ok </Button></td>
+        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faMoneyCheck} /> 50% </Button></td>
+        <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faSearchDollar} /> ?? </Button></td>
+        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faImage} /> Image</Button></td>
       </tr>
     );
 
