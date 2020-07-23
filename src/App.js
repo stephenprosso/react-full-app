@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table, Button } from "reactstrap";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faThumbsUp, faThumbsDown, faImage, faMoneyCheck, faSearchDollar} from '@fortawesome/free-solid-svg-icons'
-import {} from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faThumbsUp,
+  faThumbsDown,
+  faImage,
+  faMoneyCheck,
+  faSearchDollar,
+} from "@fortawesome/free-solid-svg-icons";
+import {} from "@fortawesome/fontawesome-svg-core";
 
 class App extends Component {
   state = {
@@ -33,30 +39,67 @@ class App extends Component {
       },
     ],
   };
-remove(id){
-  let updatedInvoices = [...this.state.invoices].filter(i => i.id !== id)
-  this.setState({invoices : updatedInvoices})
-}
+  remove(id) {
+    let updatedInvoices = [...this.state.invoices].filter(i => i.id !== id);
+    this.setState({ invoices: updatedInvoices });
+  }
 
   render() {
     const isLoading = this.state.isLoading;
     const allInvoices = this.state.invoices;
-  
-    if (isLoading) return (<div>Loading.....</div>);
 
-    let invoices = allInvoices.map(invoice => 
+    if (isLoading) return <div>Loading.....</div>;
+
+    let invoices = allInvoices.map((invoice) => (
       <tr key={invoice.id}>
         <td>{invoice.Vendor}</td>
         <td>{invoice.Amount}</td>
         <td>{invoice.Invoice}</td>
         <td>{invoice.date}</td>
-        <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faThumbsUp} /> Ok </Button></td>
-        <td><Button className="btn btn-lg btn-danger" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faThumbsDown} /> N-ok </Button></td>
-        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}><FontAwesomeIcon icon={faMoneyCheck} /> 50% </Button></td>
-        <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faSearchDollar} /> ?? </Button></td>
-        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faImage} /> Image</Button></td>
+        <td>
+          <Button
+            className="btn btn-lg btn-success"
+            onClick={() => this.remove(invoice.id)}
+          >
+            <FontAwesomeIcon icon={faThumbsUp} /> Ok{" "}
+          </Button>
+        </td>
+        <td>
+          <Button
+            className="btn btn-lg btn-danger"
+            onClick={() => this.remove(invoice.id)}
+          >
+            <FontAwesomeIcon icon={faThumbsDown} /> N-ok{" "}
+          </Button>
+        </td>
+        <td>
+          <Button
+            className="btn btn-lg btn-info"
+            onClick={() => this.remove(invoice.id)}
+          >
+            <FontAwesomeIcon icon={faMoneyCheck} /> 50%{" "}
+          </Button>
+        </td>
+        <td>
+          <Button
+            className="btn btn-lg btn-warning"
+            onClick={() => this.remove(invoice.id)}
+          >
+            {" "}
+            <FontAwesomeIcon icon={faSearchDollar} /> ??{" "}
+          </Button>
+        </td>
+        <td>
+          <Button
+            className="btn btn-lg btn-info"
+            onClick={() => this.remove(invoice.id)}
+          >
+            {" "}
+            <FontAwesomeIcon icon={faImage} /> Image
+          </Button>
+        </td>
       </tr>
-    );
+    ));
 
     return (
       <div className="container border border-secondary rounded center">
@@ -69,16 +112,20 @@ remove(id){
           <div className=".col-xs-12 center text-center">
             <Table dark responsive striped bordered hover>
               <thead>
-                <th>Vendor</th>
-                <th>Amount</th>
-                <th>Invoice #</th>
-                <th>Date</th>
-                <th colSpan="4">Action</th>
-                <th>Image</th>
+                <tr>
+                  <th>Vendor</th>
+                  <th>Amount</th>
+                  <th>Invoice #</th>
+                  <th>Date</th>
+                  <th colSpan="4">Action</th>
+                  <th>Image</th>
+                </tr>
               </thead>
               <tbody>
                 {this.state.invoices.length === 0 ? (
-                  <td colSpan="9">The Pipper has been paid!</td>
+                  <tr>
+                    <td colSpan="9">The Pipper has been paid!</td>
+                  </tr>
                 ) : (
                   invoices
                 )}
