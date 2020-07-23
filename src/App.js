@@ -1,34 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
-  state = {  }
-  render() { 
-    return (  <div>Test</div>);
+  state = {
+    isLoading: false,
+    invoices: [],
+  };
+  render() {
+    const isLoading = this.state.isLoading;
+    const invoices = this.state.invoices;
+    const body = [
+      {  
+        id: "100",
+        Vendor: "Handbook",
+        Amount: "$18,000",
+        date: "01/20/2020",
+      },
+      {
+        id: "101",
+        Vendor: "Handbook",
+        Amount: "$18,000",
+        date: "01/20/2020",
+      },
+      {
+        id: "102",
+        Vendor: "Handbook",
+        Amount: "$18,000",
+        date: "01/20/2020",
+      },
+    ];
+    if (isLoading) return <div>Loading.....</div>;
+
+    return <div className="container border border-secondary rounded center">
+      <div className="row">
+        <div className="col-12">
+          <h4>Pending Invoices - BiggCloud</h4>
+        </div>
+
+      </div>
+
+    </div>;
   }
 }
- 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;
