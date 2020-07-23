@@ -6,12 +6,7 @@ import { Table, Button } from "reactstrap";
 class App extends Component {
   state = {
     isLoading: false,
-    invoices: [],
-  };
-  render() {
-    const isLoading = this.state.isLoading;
-    const invoices = this.state.invoices;
-    const body = [
+    invoices: [
       {
         id: "100",
         Vendor: "Handbook",
@@ -33,8 +28,32 @@ class App extends Component {
         Invoice: "003",
         date: "03/30/2020",
       },
-    ];
-    if (isLoading) return <div>Loading.....</div>;
+    ],
+  };
+remove(id){
+  let updatedInvoices = [...this.state.invoices].filter(i => i.id !== id)
+  this.setState({invoices : updatedInvoices})
+}
+
+  render() {
+    const isLoading = this.state.isLoading;
+    const allInvoices = this.state.invoices;
+  
+    if (isLoading) return (<div>Loading.....</div>);
+
+    let invoices = allInvoices.map(invoice => 
+      <tr key={invoice.id}>
+        <td>{invoice.Vendor}</td>
+        <td>{invoice.Amount}</td>
+        <td>{invoice.Invoice}</td>
+        <td>{invoice.date}</td>
+        <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(invoice.id)}>Ok</Button></td>
+        <td><Button className="btn btn-lg btn-danger" onClick={() => this.remove(invoice.id)}>N-ok</Button></td>
+        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}>50%</Button></td>
+        <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(invoice.id)}>??</Button></td>
+        <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}>Image</Button></td>
+      </tr>
+    );
 
     return (
       <div className="container border border-secondary rounded center">
@@ -55,8 +74,11 @@ class App extends Component {
                 <th>Image</th>
               </thead>
               <tbody>
-
-
+                {this.state.invoices.length === 0 ? (
+                  <td colSpan="9">The Pipper has been paid!</td>
+                ) : (
+                  invoices
+                )}
               </tbody>
             </Table>
           </div>
