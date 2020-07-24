@@ -13,35 +13,45 @@ import {
 import {} from "@fortawesome/fontawesome-svg-core";
 
 class App extends Component {
+ /* [
+    {
+      id: "100",
+      Vendor: "Handbook",
+      Amount: "$18,000",
+      Invoice: "001",
+      date: "01/20/2020",
+    },
+    {
+      id: "101",
+      Vendor: "Handbook",
+      Amount: "$19,000",
+      Invoice: "002",
+      date: "02/22/2020",
+    },
+    {
+      id: "102",
+      Vendor: "Handbook",
+      Amount: "$20,000",
+      Invoice: "003",
+      date: "03/30/2020",
+    },
+  ],*/
   state = {
     isLoading: false,
-    invoices: [
-      {
-        id: "100",
-        Vendor: "Handbook",
-        Amount: "$18,000",
-        Invoice: "001",
-        date: "01/20/2020",
-      },
-      {
-        id: "101",
-        Vendor: "Handbook",
-        Amount: "$19,000",
-        Invoice: "002",
-        date: "02/22/2020",
-      },
-      {
-        id: "102",
-        Vendor: "Handbook",
-        Amount: "$20,000",
-        Invoice: "003",
-        date: "03/30/2020",
-      },
-    ],
+    invoices: [  ],
   };
   remove(id) {
+    console.log(id);
     let updatedInvoices = [...this.state.invoices].filter(i => i.id !== id);
+    console.log(updatedInvoices);
     this.setState({ invoices: updatedInvoices });
+  }
+
+  async componentDidMount(){
+    const response = await fetch('https://x3mivos7o8.execute-api.us-west-1.amazonaws.com/Dev');
+    const body = await response.json();
+    this.setState({invoices:body,isLoading:false});
+
   }
 
   render() {
@@ -113,12 +123,12 @@ class App extends Component {
             <Table dark responsive striped bordered hover>
               <thead>
                 <tr>
-                  <th>Vendor</th>
-                  <th>Amount</th>
-                  <th>Invoice #</th>
-                  <th>Date</th>
-                  <th colSpan="4">Action</th>
-                  <th>Image</th>
+                  <th scope="row">Vendor</th>
+                  <th scope="row">Amount</th>
+                  <th scope="row">Invoice #</th>
+                  <th scope="row">Date</th>
+                  <th scope="row" colSpan="4">Action</th>
+                  <th scope="row">Image</th>
                 </tr>
               </thead>
               <tbody>
