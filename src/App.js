@@ -40,8 +40,8 @@ class App extends Component {
     isLoading: false,
     invoices: [  ],
   };
-  remove(id) {
-    let updatedInvoices = [...this.state.invoices].filter(i => i.id !== id);
+  remove(Id) {
+    let updatedInvoices = [...this.state.invoices].filter(i => i.Id !== Id);
     this.setState({ invoices: updatedInvoices });
   }
 
@@ -59,15 +59,15 @@ class App extends Component {
     if (isLoading) return <div>Loading.....</div>;
 
     let invoices = allInvoices.map((invoice) => (
-      <tr key={invoice.id}>
+      <tr key={invoice.Id}>
         <td>{invoice.Vendor}</td>
         <td>{invoice.Amount}</td>
         <td>{invoice.Invoice}</td>
-        <td>{invoice.date}</td>
+        <td>{invoice.Date}</td>
         <td>
           <Button
             className="btn btn-lg btn-success"
-            onClick={() => this.remove(invoice.id)}
+            onClick={() => this.remove(invoice.Id)}
           >
             <FontAwesomeIcon icon={faThumbsUp} /> Ok{" "}
           </Button>
@@ -75,7 +75,7 @@ class App extends Component {
         <td>
           <Button
             className="btn btn-lg btn-danger"
-            onClick={() => this.remove(invoice.id)}
+            onClick={() => this.remove(invoice.Id)}
           >
             <FontAwesomeIcon icon={faThumbsDown} /> N-ok{" "}
           </Button>
@@ -83,7 +83,7 @@ class App extends Component {
         <td>
           <Button
             className="btn btn-lg btn-info"
-            onClick={() => this.remove(invoice.id)}
+            onClick={() => this.remove(invoice.Id)}
           >
             <FontAwesomeIcon icon={faMoneyCheck} /> 50%{" "}
           </Button>
@@ -91,7 +91,7 @@ class App extends Component {
         <td>
           <Button
             className="btn btn-lg btn-warning"
-            onClick={() => this.remove(invoice.id)}
+            onClick={() => this.remove(invoice.Id)}
           >
             {" "}
             <FontAwesomeIcon icon={faSearchDollar} /> ??{" "}
@@ -100,7 +100,7 @@ class App extends Component {
         <td>
           <Button
             className="btn btn-lg btn-info"
-            onClick={() => this.remove(invoice.id)}
+            onClick={() => this.remove(invoice.Id)}
           >
             {" "}
             <FontAwesomeIcon icon={faImage} /> Image
@@ -121,12 +121,12 @@ class App extends Component {
             <Table dark responsive striped bordered hover>
               <thead>
                 <tr>
-                  <th scope="row">Vendor</th>
-                  <th scope="row">Amount</th>
-                  <th scope="row">Invoice #</th>
-                  <th scope="row">Date</th>
-                  <th scope="row" colSpan="4">Action</th>
-                  <th scope="row">Image</th>
+                  <th>Vendor</th>
+                  <th>Amount</th>
+                  <th>Invoice #</th>
+                  <th>Date</th>
+                  <th colSpan="4">Action</th>
+                  <th>Image</th>
                 </tr>
               </thead>
               <tbody>
